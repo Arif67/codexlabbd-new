@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BuilderController;
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/service', [PageController::class, 'service'])->name('service');
+Route::get('/service/{service}', [PageController::class, 'serviceShow'])->name('service.show');
 Route::get('/project', [PageController::class, 'project'])->name('project');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::post('/contact', [PageController::class, 'sendContact'])->name('contact.send');
@@ -39,6 +41,9 @@ Route::post('/admin/logout', [LoginController::class, 'logout'])->middleware('au
 */
 Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Content builder image upload
+    Route::post('builder/upload', [BuilderController::class, 'upload'])->name('builder.upload');
 
     // DataTables AJAX endpoints
     Route::get('services/data', [ServiceController::class, 'data'])->name('services.data');

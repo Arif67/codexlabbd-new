@@ -13,7 +13,9 @@
     
     
     // Initiate the wowjs
-    new WOW().init();
+    // live:false => no MutationObserver, so SPA-injected content is not
+    // hidden by the observer; spa.js re-inits WOW after each page swap.
+    new WOW({ live: false }).init();
 
 
     // Sticky Navbar

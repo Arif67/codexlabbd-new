@@ -5,17 +5,17 @@
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="section-title position-relative mb-4 pb-2">
                     <h6 class="position-relative text-primary ps-4">About Us</h6>
-                    <h2 class="mt-2">Your growth partner in digital marketing</h2>
+                    <h2 class="mt-2">Your technology & growth partner</h2>
                 </div>
-                <p class="mb-4">{{ config('site.name') }} is a full-service digital marketing agency helping brands grow online. From SEO and paid ads to social media and high-converting websites, we combine data, creativity and strategy to deliver measurable results for businesses of every size.</p>
+                <p class="mb-4">{{ config('site.name') }} is a custom software development company helping businesses build powerful web, mobile and enterprise applications. Alongside engineering, our digital marketing team drives traffic, leads and revenue — so you get a great product and the growth to match.</p>
                 <div class="row g-3">
                     <div class="col-sm-6">
-                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Data-Driven Strategy</h6>
-                        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Experienced Team</h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Custom-Built Software</h6>
+                        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Experienced Engineers</h6>
                     </div>
                     <div class="col-sm-6">
-                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>24/7 Support</h6>
-                        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>Transparent Pricing</h6>
+                        <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>Agile Delivery</h6>
+                        <h6 class="mb-0"><i class="fa fa-check text-primary me-2"></i>24/7 Support</h6>
                     </div>
                 </div>
                 <div class="d-flex align-items-center mt-4">

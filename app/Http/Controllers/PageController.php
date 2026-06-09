@@ -36,6 +36,18 @@ class PageController extends Controller
         ]);
     }
 
+    public function serviceShow(int $service)
+    {
+        $item = $this->services->find($service);
+
+        abort_unless($item->is_active, 404);
+
+        return view('service-detail', [
+            'service' => $item,
+            'services' => $this->services->publicList(),
+        ]);
+    }
+
     public function project()
     {
         return view('project', [

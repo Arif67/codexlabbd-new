@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <title>{{ config('site.name') }} - {{ $title ?? config('site.tagline') }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="digital marketing, seo, ppc, social media, web design" name="keywords">
+    <meta content="custom software, software development, web application, mobile app, saas, digital marketing, seo" name="keywords">
     <meta content="{{ config('site.name') }} - {{ config('site.tagline') }}" name="description">
 
     <!-- Favicon -->
@@ -28,6 +28,34 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+    <!-- SPA progress bar -->
+    <style>
+        #spa-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: var(--bs-primary, #06A3DA);
+            box-shadow: 0 0 8px rgba(6, 163, 218, 0.7);
+            z-index: 2000;
+            opacity: 0;
+            transition: width 0.3s ease, opacity 0.3s ease;
+        }
+        #spa-progress.active {
+            opacity: 1;
+            width: 85%;
+            transition: width 8s cubic-bezier(0.1, 0.7, 0.1, 1), opacity 0.2s ease;
+        }
+        #spa-main.spa-leaving {
+            opacity: 0.55;
+            transition: opacity 0.15s ease;
+        }
+        #spa-main {
+            transition: opacity 0.2s ease;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,15 +68,19 @@
         </div>
         <!-- Spinner End -->
 
-        <!-- Navbar & Header Start -->
-        <div class="container-fluid position-relative p-0">
-            @include('partials.navbar')
+        <!-- SPA swappable region: navbar + header + content -->
+        <div id="spa-main">
+            <!-- Navbar & Header Start -->
+            <div class="container-fluid position-relative p-0">
+                @include('partials.navbar')
 
-            @yield('header')
+                @yield('header')
+            </div>
+            <!-- Navbar & Header End -->
+
+            @yield('content')
         </div>
-        <!-- Navbar & Header End -->
-
-        @yield('content')
+        <!-- /spa-main -->
 
         @include('partials.footer')
 
@@ -65,6 +97,9 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+
+    <!-- SPA navigation (no framework, no full reload) -->
+    <script src="{{ asset('js/spa.js') }}"></script>
 </body>
 
 </html>

@@ -5,10 +5,10 @@
         <div class="container my-5 py-5 px-lg-5">
             <div class="row g-5 py-5">
                 <div class="col-lg-6 text-center text-lg-start">
-                    <h1 class="text-white mb-4 animated zoomIn">Grow your business faster with data-driven digital marketing</h1>
-                    <p class="text-white pb-3 animated zoomIn">{{ config('site.name') }} helps brands attract more customers, generate quality leads and increase revenue through SEO, paid ads, social media and conversion-focused websites.</p>
-                    <a href="{{ route('contact') }}" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Free Quote</a>
-                    <a href="{{ route('contact') }}" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
+                    <h1 class="text-white mb-4 animated zoomIn">Custom software solutions that move your business forward</h1>
+                    <p class="text-white pb-3 animated zoomIn">{{ config('site.name') }} builds tailored web, mobile and enterprise software — and powers your growth with result-driven digital marketing. One team for both your product and your reach.</p>
+                    <a href="{{ route('service') }}" class="btn btn-light py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Our Services</a>
+                    <a href="{{ route('contact') }}" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Get a Quote</a>
                 </div>
                 <div class="col-lg-6 text-center text-lg-start">
                     <img class="img-fluid" src="{{ asset('img/hero.png') }}" alt="{{ config('site.name') }}">

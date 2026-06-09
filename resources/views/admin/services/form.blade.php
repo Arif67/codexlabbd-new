@@ -9,6 +9,18 @@
 @section('content')
     @include('admin.partials.alerts')
 
+    @php
+        // Rebuild the builder from saved JSON. For legacy services that only
+        // have a plain description (no builder model yet), seed one text block.
+        $initialJson = old('content_json', $service->content_json);
+        if (blank($initialJson) && filled($service->description)) {
+            $initialJson = json_encode([[
+                'type' => 'text',
+                'html' => e($service->description),
+            ]]);
+        }
+    @endphp
+
     <div class="card">
         <form action="{{ $service->exists ? route('admin.services.update', $service) : route('admin.services.store') }}" method="POST">
             @csrf
@@ -31,8 +43,34 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Description <span class="text-danger">*</span></label>
-                    <textarea name="description" rows="4" class="form-control" required>{{ old('description', $service->description) }}</textarea>
+                    <label>Short Excerpt <small class="text-muted">(card e dekhabe)</small></label>
+                    <input type="text" name="excerpt" class="form-control" maxlength="500"
+                           value="{{ old('excerpt', $service->excerpt) }}"
+                           placeholder="Service card er jonno ek line summary">
+                    <small class="text-muted">Khali rakhle content theke auto-excerpt toiri hobe.</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Content Builder <small class="text-muted">(text, image, video, row/column)</small></label>
+                    <div id="content-builder" class="cb-wrap"
+                         data-upload-url="{{ route('admin.builder.upload') }}"
+                         data-csrf="{{ csrf_token() }}"
+                         data-initial="{{ $initialJson }}">
+                        <div class="cb-toolbar">
+                            <button type="button" class="cb-add" data-add="heading"><i class="fas fa-heading"></i> Heading</button>
+                            <button type="button" class="cb-add" data-add="text"><i class="fas fa-paragraph"></i> Text</button>
+                            <button type="button" class="cb-add" data-add="image"><i class="fas fa-image"></i> Image</button>
+                            <button type="button" class="cb-add" data-add="video"><i class="fas fa-video"></i> Video</button>
+                            <span class="cb-sep"></span>
+                            <button type="button" class="cb-add" data-add="row1"><i class="fas fa-square"></i> 1 Col</button>
+                            <button type="button" class="cb-add" data-add="row2"><i class="fas fa-columns"></i> 2 Cols</button>
+                            <button type="button" class="cb-add" data-add="row3"><i class="fas fa-th"></i> 3 Cols</button>
+                        </div>
+                        <div class="cb-canvas"></div>
+                    </div>
+                    {{-- Builder fills these on submit --}}
+                    <input type="hidden" name="content_json" value="{{ old('content_json', $service->content_json) }}">
+                    <textarea name="description" class="d-none">{{ old('description', $service->description) }}</textarea>
                 </div>
 
                 <div class="row">
@@ -58,4 +96,17 @@
             </div>
         </form>
     </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="{{ asset('css/builder.css') }}">
+@stop
+
+@section('js')
+    <script src="{{ asset('js/builder.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            BoostBuilder.init('#content-builder');
+        });
+    </script>
 @stop

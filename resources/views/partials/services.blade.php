@@ -13,8 +13,8 @@
                             <i class="fa {{ $service->icon }} fa-2x"></i>
                         </div>
                         <h5 class="mb-3">{{ $service->title }}</h5>
-                        <p>{{ $service->description }}</p>
-                        <a class="btn px-3 mt-auto mx-auto" href="{{ route('contact') }}">Read More</a>
+                        <p>{{ $service->card_text }}</p>
+                        <a class="btn px-3 mt-auto mx-auto" href="{{ route('service.show', $service) }}">Read More</a>
                     </div>
                 </div>
             @empty
